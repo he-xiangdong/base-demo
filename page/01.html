@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-控制属性</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        #revise-target {
+            margin: 30px auto;
+            width: 150px;
+            height: 150px;
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h3>控制属性</h3>
+        <section>
+            <div>
+                <button>变宽</button>
+                <button>变高</button>
+                <button>变色</button>
+                <button>隐藏</button>
+                <button>重置</button>
+            </div>
+
+            <div id="revise-target"></div>
+        </section>
+    </section>
+
+    <script>
+        var reviseTarget = document.getElementById('revise-target');
+        var oBtn = document.getElementsByTagName('button');
+        var oAtt = ['width', 'height', 'background', 'display', 'display'];
+        var oVal = ['200px', '200px', 'red', 'none', 'block'];
+
+        for (let i = 0; i < oBtn.length; i++) {
+            oBtn[i].index = i;
+            oBtn[i].onclick = function() {
+
+                // && 当前面的表达式成立的时候， 才会执行后面的
+                // 这一步 就是点击最后一个按钮时 清空通过 js 设置的 行内样式
+                this.index == oBtn.length - 1 && (reviseTarget.style.cssText = '');
+                reviseTargetStyle(reviseTarget, oAtt[this.index], oVal[this.index]);
+            }
+        }
+
+        function reviseTargetStyle(ele, attr, value) {
+            ele.style[attr] = value;
+        }
+    </script>
+</body>
+
+</html>

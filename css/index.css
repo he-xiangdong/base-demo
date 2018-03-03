@@ -1,8 +1,7 @@
-html,body {
+html,
+body {
     width: 100%;
     height: 100%;
-    min-width: 1000px;
-    overflow: hidden;
 }
 
 nav {
@@ -11,17 +10,70 @@ nav {
     left: 0;
     width: 400px;
     height: 100%;
-    background: rgb(64, 218, 37);
+    /* background: rgb(64, 218, 37); */
+    z-index: 99;
+}
+
+.navList {
+    padding: 10px;
+}
+
+.navList .navItem {
+    border-bottom: 1px solid #e4e4e4;
+    color: #fff;
+    height: 40px;
+    overflow: hidden;
+    transition: height .5s ease-in-out;
+}
+
+.navList .navItem h4 {
+    padding: 0 20px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.navList .navItem:first-of-type {
+    border-top: 1px solid #e4e4e4;
+}
+
+.navList .navItem:hover {
+    cursor: pointer;
+    background: rgb(77, 245, 71);
+}
+
+.navItem.active {
+    background: rgb(77, 245, 71);
+    height: auto;
+}
+
+.navList .active h4 {
+    background: rgb(17, 139, 240);
+}
+
+.pageList li {
+    padding: 0 30px;
+    line-height: 30px;
+    font-size: 16px;
+    background: rgb(23, 61, 231);
+}
+
+.pageList li:hover {
+    background: rgb(35, 226, 240);
 }
 
 section {
+    position: relative;
     width: 100%;
     height: 100%;
-    padding-left: 400px;
     box-sizing: border-box;
+    border-left: 400px solid rgb(64, 218, 37);
 }
 
 iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
     height: 100%;
 }

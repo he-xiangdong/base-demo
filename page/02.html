@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-换肤效果</title>
+
+    <link rel="stylesheet" href="../css/skin-black.css">
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        #skin span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 8px solid #000;
+            background: #000;
+        }
+        
+        #skin span:first-child {
+            background: red;
+            border-color: red;
+        }
+        
+        #skin span:last-child {
+            background: blue;
+            border-color: blue;
+        }
+        
+        #skin span.active {
+            background: #fff;
+        }
+        
+        #nav {
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        #nav li {
+            float: left;
+            width: 40px;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <h3>换肤效果</h3>
+
+        <div id="skin">
+            <span title="红色" id="skin-red"></span>
+            <span title="黑色" id="skin-black" class="active"></span>
+            <span title="蓝色" id="skin-blue"></span>
+        </div>
+        <ul id="nav">
+            <li>新闻</li>
+            <li>娱乐</li>
+            <li>体育</li>
+            <li>电影</li>
+            <li>音乐</li>
+            <li>旅游</li>
+        </ul>
+    </section>
+
+    <script>
+        // 根据选择的颜色，动态请求相应的 css 文件， 达到换肤效果
+
+        var oLink = document.getElementsByTagName('link')[0];
+        var oBtn = document.getElementById("skin").getElementsByTagName('span');
+        for (let i = 0; i < oBtn.length; i++) {
+            oBtn[i].onclick = function() {
+                for (let i = 0; i < oBtn.length; i++) {
+                    oBtn[i].className = '';
+                }
+                this.className = 'active';
+                oLink.href = '../css/' + this.id + '.css';
+            }
+
+        }
+    </script>
+</body>
+
+</html>
