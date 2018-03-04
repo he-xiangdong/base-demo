@@ -23,5 +23,38 @@ var pageData = {
         "pageId": 6,
         "url": "./page/06.html",
         "name": "记住密码提示框"
+    }],
+    "nav2": [{
+        "pageId": 7,
+        "url": "./page/07.html",
+        "name": "输入法菜单"
+    }, {
+        "pageId": 8,
+        "url": "./page/08.html",
+        "name": "点击Div，显示其innerHTML"
+    }, {
+        "pageId": 9,
+        "url": "./page/09.html",
+        "name": "求出数组中所有数字的和"
+    }, {
+        "pageId": 10,
+        "url": "./page/10.html",
+        "name": "弹出层效果"
+    }, {
+        "pageId": 11,
+        "url": "./page/11.html",
+        "name": "函数传参，改变Div任意属性的值"
+    }, {
+        "pageId": 12,
+        "url": "./page/12.html",
+        "name": "图片列表：鼠标移入/移出改变图片透明度"
+    }, {
+        "pageId": 13,
+        "url": "./page/13.html",
+        "name": "简易选项卡"
+    }, {
+        "pageId": 14,
+        "url": "./page/14.html",
+        "name": "简易JS年历"
     }]
 }

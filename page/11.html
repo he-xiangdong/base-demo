@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数传参，改变Div任意属性的值</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 15px auto;
+            color: #fff;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>函数传参，改变Div任意属性的值</h3>
+    <section>
+        <label>属性名: <input type="text" value="background"></label><br><br>
+        <label>属性值: <input type="text" value="red"></label><br><br>
+        <button>确定</button>
+        <button>重置</button><br>
+
+        <div id="target">在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。</div>
+    </section>
+
+    <script>
+        var oInput = document.getElementsByTagName('input');
+        var oBtn = document.getElementsByTagName('button');
+        var target = document.getElementById('target');
+
+        setStyle(target, oInput[0].value, oInput[1].value);
+
+        oBtn[0].onclick = function() {
+            setStyle(target, oInput[0].value, oInput[1].value);
+        }
+
+        oBtn[1].onclick = function() {
+            oInput[0].value = "background";
+            oInput[1].value = "red";
+            target.style.cssText = '';
+            setStyle(target, oInput[0].value, oInput[1].value);
+        }
+
+        function setStyle(ele, style, value) {
+            ele.style[style] = value;
+        }
+    </script>
+</body>
+
+</html>

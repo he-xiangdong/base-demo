@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>输入法菜单</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        div {
+            margin: auto;
+            width: 60px;
+        }
+        
+        ul {
+            width: 60px;
+            margin: 10px 0;
+            padding: 0;
+            color: rgb(67, 239, 245);
+            border: 1px solid rgb(67, 239, 245);
+            display: none;
+        }
+        
+        li {
+            padding: 5px;
+            list-style: none;
+            cursor: pointer;
+        }
+        
+        li:last-of-type {
+            border-top: 1px solid rgb(67, 239, 245);
+        }
+        
+        li:hover {
+            background: rgba(94, 253, 253, 0.233);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>输入法菜单</h3>
+    <section>
+        <div>
+            <button>输入法</button>
+
+            <ul>
+                <li>手写</li>
+                <li>拼音</li>
+                <li>关闭</li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        var oBtn = document.getElementsByTagName('button')[0];
+        var oUl = document.getElementsByTagName('ul')[0];
+        var closeBtn = oUl.getElementsByTagName('li')[2];
+
+        oBtn.onclick = function() {
+            oUl.style.display = 'block';
+        }
+
+        closeBtn.onclick = function() {
+            oUl.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

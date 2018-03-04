@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片列表：鼠标移入/移出改变图片透明度</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        ul {
+            margin: auto;
+            padding: 0 0 10px 10px;
+            width: 400px;
+            border: 1px solid #666;
+            display: inline-block;
+        }
+        
+        li {
+            list-style: none;
+            border: 1px solid #e4e4e4;
+            width: 90px;
+            height: 90px;
+            float: left;
+            margin: 10px 10px 0 0;
+            box-sizing: border-box;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            opacity: .5;
+        }
+        /* css 方法 */
+        /* img:hover {
+            opacity: 1;
+        } */
+    </style>
+</head>
+
+<body>
+    <h3>鼠标移入/移出改变图片透明度</h3>
+    <section>
+        <ul>
+            <li><img src="../images/12-01.jpg"></li>
+            <li><img src="../images/12-02.jpg"></li>
+            <li><img src="../images/12-03.jpg"></li>
+            <li><img src="../images/12-04.jpg"></li>
+            <li><img src="../images/12-05.jpg"></li>
+            <li><img src="../images/12-06.jpg"></li>
+            <li><img src="../images/12-07.jpg"></li>
+            <li><img src="../images/12-08.jpg"></li>
+        </ul>
+    </section>
+
+    <script>
+        var oImg = document.getElementsByTagName('img');
+        for (let i = 0; i < oImg.length; i++) {
+            oImg[i].onmouseover = function() {
+                this.style.opacity = 1;
+            }
+
+            oImg[i].onmouseout = function() {
+                this.style.opacity = .5;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

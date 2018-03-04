@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹出层效果</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .layer-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .3);
+            display: none;
+        }
+        
+        .layer-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            width: 300px;
+            height: 200px;
+            border: 3px solid #ccc;
+            background: rgb(255, 139, 6);
+            color: #fff;
+        }
+        
+        .layer-title {
+            position: relative;
+            height: 30px;
+            line-height: 30px;
+            background: rgb(235, 196, 67);
+        }
+        
+        .layer-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 3px;
+            width: 10px;
+            height: 10px;
+            line-height: 10px;
+            color: #fff;
+            border: 1px solid #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>弹出层效果</h3>
+    <section>
+        <button>弹出层</button>
+    </section>
+
+    <section class="layer-box">
+        <div class="layer-content">
+            <div class="layer-title">
+                <div class="layer-close">X</div>
+                标题
+            </div>
+            <div class="layer-msg">内容</div>
+        </div>
+    </section>
+
+    <script>
+        var oBtn = document.getElementsByTagName('button')[0];
+        var layerBox = document.getElementsByClassName('layer-box')[0];
+        var closeBtn = document.getElementsByClassName('layer-close')[0];
+
+        oBtn.onclick = function() {
+            layerBox.style.display = 'block';
+        }
+
+        closeBtn.onclick = function() {
+            layerBox.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
