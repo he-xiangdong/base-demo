@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单一按钮显示/隐藏一播放列表收缩展开</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            border: 1px solid #333;
+            background: rgb(190, 190, 190);
+            width: 200px;
+            margin: auto;
+        }
+
+        div {
+            border: 1px solid #fff;
+            padding: 5px 10px;
+            text-align: left;
+            overflow: hidden;
+            background: rgb(150, 150, 150);
+            color: rgb(50, 50, 50);
+            cursor: pointer;
+        }
+
+        span {
+            float: right;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+
+        li {
+            list-style: none;
+            text-align: left;
+            padding: 5px 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(140, 149, 192);
+
+        }
+
+        li:hover a {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>单一按钮显示/隐藏一播放列表收缩展开</h3>
+    <section>
+        <div>播放列表...
+            <span>▼</span>
+        </div>
+        <ul>
+            <li>
+                <a href="javascript:;">给我一个理由忘记-A-Lin</a>
+            </li>
+            <li>
+                <a href="javascript:;">说散就散-袁维娅</a>
+            </li>
+            <li>
+                <a href="javascript:;">大浪淘沙-玄觞</a>
+            </li>
+            <li>
+                <a href="javascript:;">让我欢喜让我忧-周华健</a>
+            </li>
+            <li>
+                <a href="javascript:;">Andy-阿杜</a>
+            </li>
+            <li>
+                <a href="javascript:;">浪人情歌-伍佰</a>
+            </li>
+        </ul>
+    </section>
+
+    <script>
+        var oBtn = document.getElementsByTagName('div')[0];
+        var oUl = document.getElementsByTagName('ul')[0];
+
+        oBtn.onclick = function () {
+            var showFlag = window.getComputedStyle(oUl, null).getPropertyValue('display');
+            console.log(showFlag)
+            oUl.style.display = showFlag == 'none' ? 'block' : 'none'
+        }
+
+    </script>
+</body>
+
+</html>

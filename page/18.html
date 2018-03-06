@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>复选框（checkbox）全选/全不选/返选</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid #000;
+        }
+
+        li {
+            margin: 5px 0;
+            list-style: none;
+            line-height: 25px;
+        }
+
+        section {
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 5px;
+            width: 150px;
+            margin: auto;
+            text-align: left;
+        }
+
+        label,
+        span {
+            cursor: pointer;
+        }
+
+        div {
+            margin: 10px 0;
+        }
+
+        #toggleSelect {
+            color: red;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>全选/全不选/返选</h3>
+    <section>
+        <div>
+            <label>
+                <input type="checkbox">
+                <span id="selectAll">全选</span>
+            </label>
+            <span id="toggleSelect">反选</span>
+        </div>
+        <ul>
+            <li>
+                <label>
+                    <input type="checkbox">选项 1</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 2</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 3</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 4</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 5</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 6</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 7</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 8</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 9</label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">选项 10</label>
+            </li>
+        </ul>
+    </section>
+
+    <script>
+        var checkAllBox = document.getElementsByTagName('div')[0].getElementsByTagName('input')[0];
+        var checkBox = document.getElementsByTagName('ul')[0].getElementsByTagName('input');
+
+        var selectAll = document.getElementById('selectAll');
+        var toggleSelect = document.getElementById('toggleSelect');
+
+
+        function isCheck() {
+            let n = 0;
+            for (let i = 0; i < checkBox.length; i++) {
+                checkBox[i].checked && n++;
+            }
+            selectAll.innerHTML = n == checkBox.length ? '全不选' : '全选';
+        }
+
+        checkAllBox.onclick = function () {
+
+            for (let i = 0; i < checkBox.length; i++) {
+                checkBox[i].checked = this.checked;
+            };
+            isCheck();
+            event.stopPropagation();
+        }
+
+        toggleSelect.onclick = function () {
+            for (let i = 0; i < checkBox.length; i++) {
+                checkBox[i].checked = !checkBox[i].checked;
+            };
+            isCheck();
+        }
+
+    </script>
+</body>
+
+</html>
