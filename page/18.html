@@ -115,7 +115,8 @@
             for (let i = 0; i < checkBox.length; i++) {
                 checkBox[i].checked && n++;
             }
-            selectAll.innerHTML = n == checkBox.length ? '全不选' : '全选';
+            checkAllBox.checked = n == checkBox.length
+            selectAll.innerHTML = checkAllBox.checked ? '全不选' : '全选';
         }
 
         checkAllBox.onclick = function () {
@@ -132,6 +133,13 @@
                 checkBox[i].checked = !checkBox[i].checked;
             };
             isCheck();
+        }
+
+        for (let i = 0; i < checkBox.length; i++) {
+            checkBox[i].onclick = function () {
+                isCheck();
+            }
+            
         }
 
     </script>

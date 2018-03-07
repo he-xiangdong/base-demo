@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面加载后累加，自加1</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>每秒加1</h3>
+    <section id="count"></section>
+
+    <script>
+        var count = document.getElementById('count');
+        var n = 1;
+        count.innerHTML = n;
+        var timer = setInterval(function(){
+            count.innerHTML = ++n;
+        },1000)
+    </script>
+</body>
+</html>

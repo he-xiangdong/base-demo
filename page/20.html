@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用parseInt解析数字，并求和</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>用parseInt解析数字，并求和</h3>
+    <section>
+        <input type="number" id="firstNum">
+        +
+        <input type="number" id="secondNum">
+        =
+        <span id="sum">?</span>
+
+        <button id="btn">求和</button>
+    </section>
+
+    <script>
+        var firstNum = document.getElementById('firstNum');
+        var secondNum = document.getElementById('secondNum');
+        var sum = document.getElementById('sum');
+        var btn = document.getElementById('btn');
+
+        btn.onclick = function () {
+            var val1 = firstNum.value;
+            var val2 = secondNum.value;
+
+            if(!val1 || !val2){
+                alert('请输入数字!');
+                return;
+            }
+
+            sum.innerHTML = parseInt(val1) + parseInt(val2);
+        }
+
+    </script>
+</body>
+</html>

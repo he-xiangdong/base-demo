@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>输入两个数字，比较大小</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>输入两个数字，比较大小</h3>
+    <section>
+        <input type="number"> vs
+        <input type="number">
+
+        <button>最大的数是 &gt;&gt;</button>
+        <span id="maxVal">?</span>
+    </section>
+
+    <script>
+        var inputs = document.getElementsByTagName('input');
+        var btn = document.getElementsByTagName('button')[0];
+
+        var maxVal = document.getElementById('maxVal');
+        btn.onclick = function () {
+            if(!inputs[0].value || !inputs[1].value){
+                alert('请输入数字!');
+
+                return;
+            }
+            var max = inputs[0].value > inputs[1].value ? inputs[0].value : inputs[1].value
+            maxVal.innerHTML = max;
+        }
+    </script>
+</body>
+
+</html>

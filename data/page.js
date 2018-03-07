@@ -67,14 +67,45 @@ var pageData = {
             "pageId": 16,
             "url": "./page/16.html",
             "name": "提示框效果"
-        },{
+        }, {
             "pageId": 17,
             "url": "./page/17.html",
             "name": "鼠标移过，修改图片路径"
-        },{
+        }, {
             "pageId": 18,
             "url": "./page/18.html",
             "name": "复选框（checkbox）全选/全不选/返选"
         }
+    ],
+    "nav3": [
+        {
+            "pageId": 19,
+            "url": "./page/19.html",
+            "name": "用typeof查看数据类型"
+        }, {
+            "pageId": 20,
+            "url": "./page/20.html",
+            "name": "用parseInt解析数字，并求和"
+        }, {
+            "pageId": 21,
+            "url": "./page/21.html",
+            "name": "累加按钮，自加1"
+        }, {
+            "pageId": 22,
+            "url": "./page/22.html",
+            "name": "输入两个数字，比较大小"
+        }, {
+            "pageId": 23,
+            "url": "./page/23.html",
+            "name": "页面加载后累加，自加1"
+        },{
+            "pageId": 24,
+            "url": "./page/24.html",
+            "name": "判断数字是否为两位数"
+        },{
+            "pageId": 25,
+            "url": "./page/25.html",
+            "name": "网页计算器"
+        },
     ]
 }
