@@ -184,30 +184,60 @@
         var btns = document.getElementsByTagName('span');
         var showNum = document.getElementsByTagName('input');
 
+        var s = false;
+
         for (var i = 0; i < btns.length; i++) {
             btns[i].onclick = function () {
                 switch (this.innerHTML) {
                     case 'c':
                         showNum[0].value = '';
-                        showNum[0].value = 0;
+                        showNum[1].value = 0;
                         break;
                     case '%':
-                        showNum[0].value = '';
-                        showNum[0].value = 0;
+                        count('%');
                         break;
                     case '÷':
-                        showNum[0].value = '';
-                        showNum[0].value = 0;
+                        count('/');
                         break;
                     case '×':
-                        showNum[0].value = '';
-                        showNum[0].value = 0;
+                        count('*');
                         break;
-                    case 'c':
-                        showNum[0].value = '';
-                        showNum[0].value = 0;
+                    case '-':
+                        count('-');
                         break;
+                    case '+':
+                        count('+');
+                        break;
+                    case '=':
+
+                        s || (showNum[0].value += showNum[1].value);
+                        showNum[1].value = eval(showNum[0].value.replace(/\+\-\/\%\*/, ''));
+
+                        s = true;
+                        break;
+
+                    case '.':
+                        if (showNum[1].value.search(/[\.\+\-\/\%\*]/) != -1)
+                            break;
+
+                    default:
+                        s && (showNum[0].value = '', showNum[1].value = 0, s = false);
+                        showNum[1].value.length < 10 && (showNum[1].value = (showNum[1].value + this.innerHTML).replace(/^[0\.\+\-\/\%\*](\d)/, '$1'));
                 }
+            }
+        }
+
+        function count(str) {
+            if (s) {
+                showNum[0].value = showNum[1].value + str;
+                showNum[1].value = str;
+                s = false;
+            } else {
+                /[\+\-\/\%\*]$/.test(showNum[1].value) || (showNum[0].value += showNum[1].value);
+                showNum[1].value = str;
+                /[\+\-\/\%\*]$/.test(showNum[0].value) || (showNum[0].value += showNum[1].value);
+
+                showNum[0].value = showNum[0].value.slice(-1) != str ? showNum[0].value.replace(/.$/, str) : showNum[0].value;
             }
         }
     </script>
