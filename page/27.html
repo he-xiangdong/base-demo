@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易倒计时</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        div {
+            margin: auto;
+            width: 200px;
+        }
+
+        .time-box {
+            padding: 10px 0;
+            margin-bottom: 10px;
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h3>简易倒计时</h3>
+    <section>
+        <div class="time-box">100秒</div>
+        <div class="btn-box">
+            <button>开始</button>
+            <button>暂停</button>
+        </div>
+    </section>
+
+    <script>
+        var btns = document.getElementsByTagName('button');
+        var timeBox = document.getElementsByClassName('time-box')[0];
+
+        var count = 100;
+        var timer;
+
+        btns[0].onclick = function () {
+            time();
+        }
+
+        btns[1].onclick = function () {
+            clearInterval(timer);
+        }
+
+
+        function time(){
+            timer = setInterval(function(){
+                count--;
+                timeBox.innerHTML = count +'秒';
+            },1000)
+        }
+    
+    </script>
+</body>
+</html>

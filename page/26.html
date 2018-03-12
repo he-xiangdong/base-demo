@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易时钟</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background: #000;
+            margin-right: 2px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>简易时钟</h3>
+    <section>
+        <ul>
+            <li class="time">1</li>
+            <li class="time">1</li>
+            <li>:</li>
+            <li class="time">1</li>
+            <li class="time">1</li>
+            <li>:</li>
+            <li class="time">1</li>
+            <li class="time">1</li>
+        </ul>
+    </section>
+
+    <script>
+
+        var timeDom = document.getElementsByClassName('time');
+        
+        showTime();
+
+        setInterval('showTime()',1000);
+
+        function showTime(){
+            var timeArr = getTime();
+            for(var i =0;i<timeDom.length;i++){
+                timeDom[i].innerHTML = timeArr[i];
+            }
+        }
+
+
+        function getTime() {
+            var nowDate = new Date();
+
+            var hours = nowDate.getHours();
+            var minutes = nowDate.getMinutes();
+            var seconds = nowDate.getSeconds();
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var times = hours + '' + minutes + '' + seconds;
+            
+            return times.split('');
+        }
+
+    </script>
+</body>
+
+</html>

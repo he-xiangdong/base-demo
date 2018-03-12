@@ -106,6 +106,26 @@ var pageData = {
             "pageId": 25,
             "url": "./page/25.html",
             "name": "网页计算器"
+        },{
+            "pageId": 26,
+            "url": "./page/26.html",
+            "name": "简易时钟"
+        },{
+            "pageId": 27,
+            "url": "./page/27.html",
+            "name": "简易倒计时"
+        }
+    ],
+    "nav4":[
+        {
+            "pageId": 28,
+            "url": "./page/28.html",
+            "name": "setTimeout 应用"
+        },{
+            "pageId": 29,
+            "url": "./page/29.html",
+            "name": "自动播放——幻灯片效果"
         },
     ]
+
 }

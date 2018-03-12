@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>setTimeout 应用</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            background: rgb(41, 197, 245);
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            color: #fff;
+            width: 100px;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .subNav {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 50px;
+            background: rgb(41, 197, 245);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>setTimeout 应用</h3>
+    <section>
+        <ul id="nav">
+            <li>
+                <div>网站首页</div>
+                <div class="subNav">
+                </div>
+            </li>
+            <li>
+                <div>产品介绍</div>
+                <div class="subNav">
+                    <span>地图</span>
+                    <span>定位</span>
+                    <span>导航</span>
+                    <span>道路规划</span>
+                    <span>搜索</span>
+                </div>
+            </li>
+            <li>
+                <div>开发支持</div>
+                <div class="subNav">
+                    <span>web端</span>
+                    <span>ios平台</span>
+                    <span>android平台</span>
+                    <span>web服务端</span>
+                    <span>其他</span>
+                </div>
+            </li>
+            <li>
+                <div>解决方案</div>
+                <div class="subNav">
+                    <span>出行</span>
+                    <span>O2O</span>
+                    <span>电商</span>
+                    <span>社交</span>
+                    <span>运动</span>
+                    <span>游戏</span>
+                </div>
+            </li>
+            <li>
+                <div>关于我们</div>
+                <div class="subNav">
+                </div>
+            </li>
+            <li>
+                <div>商务合作</div>
+                <div class="subNav">
+                    <span>商务合作</span>
+                    <span>服务升级</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <script>
+
+        var nav = document.getElementById('nav');
+        var lists = nav.getElementsByTagName('li');
+        var subNav = document.getElementsByClassName('subNav');
+        var timer;
+
+
+        for (var i = 0; i < lists.length; i++) {
+            lists[i].index = i;
+            
+            lists[i].onmouseover = function () {
+                for(var i =0;i<subNav.length;i++){
+                    subNav[i].style.display = 'none';
+                }
+
+                subNav[this.index].style.display = 'block';
+                clearTimeout(timer);
+            }
+
+            lists[i].onmouseout = function () {
+
+                timer = setTimeout(() => {
+                    subNav[this.index].style.display = 'none';
+                }, 200);
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
