@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Div闪烁</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            background: red;
+            color: #fff;
+            margin: 200px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Div闪烁</h3>
+
+    <section>点击闪烁</section>
+
+    <script>
+        var box = document.getElementsByTagName('section')[0];
+        var timer;
+        box.onclick = function () {
+            var i = 0;
+            clearInterval(timer);
+            setInterval(function () {
+                box.style.display = (i++ % 2 ? 'none' : 'block');
+
+                i > 10 && (box.style.display = 'block',clearInterval(timer))
+            }, 80)
+
+        }
+    </script>
+</body>
+
+</html>

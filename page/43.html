@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用键盘控制Div</title>
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        pre {
+            margin: auto;
+            /* width: 300px; */
+            text-align: left;
+            border: 1px solid blue;
+            color: green;
+        }
+
+        #target-box {
+            position: absolute;
+            top: 100px;
+            left: 400px;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>用键盘控制Div</h3>
+
+    <section>
+        <pre>
+
+            红色方块为键盘操作区域，您可以进行如下操作：
+
+            上：↑ 下：↓ 左：← 右：→
+                
+            Ctrl + 1 : 背景变为绿色
+            Ctrl + 2 : 背景变为黄色
+            Ctrl + 3 : 背景变为蓝色
+            Ctrl + ↑ : 放大
+            Ctrl + ↓ : 缩小
+
+        </pre>
+
+        <div id="target-box"></div>
+    </section>
+
+    <script>
+        var targetBox = document.getElementById('target-box');
+        document.onkeydown = function (event) {
+            console.log(event)
+            switch (event.keyCode) {
+                case 37:
+                    targetBox.style.left = parseInt(getComputedStyle(targetBox, null)['left']) - 5 + 'px';
+                    break;
+                case 38:
+                    if (event.ctrlKey) {
+                        var oldW = targetBox.offsetWidth;
+                        var oldH = targetBox.offsetHeight;
+
+                        targetBox.style.width = oldW * 1.1 + 'px';
+                        targetBox.style.height = oldH * 1.1 + 'px';
+
+                    } else {
+                        targetBox.style.top = parseInt(getComputedStyle(targetBox, null)['top']) - 5 + 'px';
+                    }
+                    break;
+                case 39:
+                    targetBox.style.left = parseInt(getComputedStyle(targetBox, null)['left']) + 5 + 'px';
+                    break;
+                case 40:
+                    if (event.ctrlKey) {
+                        var oldW = targetBox.offsetWidth;
+                        var oldH = targetBox.offsetHeight;
+
+                        targetBox.style.width = oldW * .8 + 'px';
+                        targetBox.style.height = oldH * .8 + 'px';
+
+                    } else {
+                        targetBox.style.top = parseInt(getComputedStyle(targetBox, null)['top']) + 5 + 'px';
+                    }
+                    break;
+                case 49:
+                    event.ctrlKey && (targetBox.style.background = 'green');
+                    break;
+                case 50:
+                    event.ctrlKey && (targetBox.style.background = 'yellow');
+                    break;
+                case 51:
+                    event.ctrlKey && (targetBox.style.background = 'blue');
+                    break;
+            }
+
+            return false;
+
+        }
+    </script>
+</body>
+
+</html>
