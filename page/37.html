@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟select控件</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .serach-box {
+            margin: auto;
+            position: relative;
+            width: 300px;
+            height: 30px;
+            border: 2px solid #ccc;
+            background: rgba(54, 54, 54, 0.829);
+            padding: 5px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .serach-icon {
+            float: left;
+            width: 30px;
+            height: 30px;
+            background: url('../images/37-02.png') no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .select-box {
+            float: left;
+            margin: 0 10px;
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #fff;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background: url('../images/37-01.png') no-repeat center right;
+        }
+
+        button {
+            float: left;
+            width: 50px;
+            line-height: 25px;
+            border-radius: 5px;
+        }
+
+        ul {
+            display: none;
+            position: absolute;
+            top: 35px;
+            left: 45px;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #fff;
+            background: #000;
+        }
+
+        li {
+            list-style: none;
+            line-height: 30px;
+            border-bottom: 1px dashed #e4e4e4;
+        }
+
+        li:hover {
+            background: rgb(92, 91, 91);
+        }
+
+        li:last-of-type {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>模拟select控件</h3>
+    <section>
+        <div class="serach-box">
+            <i class="serach-icon"></i>
+            <span class="select-box"></span>
+            <button>搜索</button>
+            <ul>
+                <li>英雄联盟</li>
+                <li>王者荣耀</li>
+                <li>QQ飞车</li>
+                <li>绝地求生</li>
+                <li>炉石传说</li>
+                <li>星际争霸</li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        var selectBox = document.getElementsByClassName('select-box')[0];
+        var listBox = document.getElementsByTagName('ul')[0];
+        var lists = listBox.getElementsByTagName('li');
+
+        selectBox.onclick = function () {
+            listBox.style.display = 'block';
+        }
+
+        for (var i = 0; i < lists.length; i++) {
+            lists[i].onclick = function () {
+                selectBox.innerHTML = this.innerHTML;
+                listBox.style.display = 'none';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

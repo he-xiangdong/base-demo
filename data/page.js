@@ -125,6 +125,53 @@ var pageData = {
             "pageId": 29,
             "url": "./page/29.html",
             "name": "自动播放——幻灯片效果"
+        },{
+            "pageId": 30,
+            "url": "./page/30.html",
+            "name": "来回播放——幻灯片效果"
+        },{
+            "pageId": 31,
+            "url": "./page/31.html",
+            "name": "agruments应用一求出函数参数的总合"
+        },{
+            "pageId": 32,
+            "url": "./page/32.html",
+            "name": "css函数一设置/读取对象的属性"
+        },{
+            "pageId": 33,
+            "url": "./page/33.html",
+            "name": "当前输入框高亮显示"
+        },{
+            "pageId": 34,
+            "url": "./page/34.html",
+            "name": "数组练习：各种数组方法的使用"
+        },{
+            "pageId": 35,
+            "url": "./page/35.html",
+            "name": "事件练习：封装兼容性添加、删除事件的函数"
+        },{
+            "pageId": 36,
+            "url": "./page/36.html",
+            "name": "星级评分系统"
+        }
+    ],
+    "nav5":[
+        {
+            "pageId": 37,
+            "url": "./page/37.html",
+            "name": "模拟select控件"
+        },{
+            "pageId": 38,
+            "url": "./page/38.html",
+            "name": "点击页面，显示单击的坐标"
+        },{
+            "pageId": 39,
+            "url": "./page/39.html",
+            "name": "用户按下键盘，显示keyCode"
+        },{
+            "pageId": 40,
+            "url": "./page/40.html",
+            "name": "阻止右键菜单（阻止默认事件）"
         },
     ]
 

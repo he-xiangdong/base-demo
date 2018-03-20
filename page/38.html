@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击页面，显示单击的坐标</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        pre {
+            width: 300px;
+            margin: auto;
+            text-align: left;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>点击页面，显示单击的坐标</h3>
+    <section>
+        <pre>
+document.onclick = function (event) {
+    var event = event || window.event;
+    console.log('X:' + event.clientX, 'Y:' + event.clientY)     
+}
+        </pre>
+    </section>
+
+    <script>
+        document.onclick = function (event) {
+            var event = event || window.event;
+            console.log('X:' + event.clientX, 'Y:' + event.clientY)
+        }
+    </script>
+</body>
+
+</html>

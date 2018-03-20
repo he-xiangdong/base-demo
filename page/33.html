@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>当前输入框高亮显示</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            margin: auto;
+            width: 350px;
+            border: 2px solid rgb(250, 146, 76);
+            text-align: left;
+            font-size: 20px;
+        }
+
+        .title {
+            padding: 5px 10px;
+            background: rgba(224, 108, 31, .3);
+            color: rgb(255, 72, 0);
+        }
+
+        .content {
+            padding: 10px 30px;
+            border-top: 1px solid rgb(250, 146, 76);
+            background: rgba(211, 175, 56, 0.3);
+        }
+
+        .content label {
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+        }
+
+        .content input {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .active {
+            background: rgba(238, 76, 76, 0.452);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>当前输入框高亮显示</h3>
+
+    <section>
+        <form>
+            <div class="title">用户登录</div>
+            <div class="content">
+                <p>
+                    <label>用户名:</label>
+                    <input type="text" placeholder="请输入用户名">
+                </p>
+                <p>
+                    <label>密码:</label>
+                    <input type="text" placeholder="请输入密码">
+                </p>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        var inputs = document.getElementsByTagName('input');
+
+        for(var i=0;i<inputs.length;i++){
+            inputs[i].onblur = function () {
+                this.className = ''
+            }
+            inputs[i].onfocus = function () {
+                this.className = 'active'
+            }
+        }
+    </script>
+</body>
+
+</html>

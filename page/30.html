@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>来回播放——幻灯片效果</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            position: relative;
+            margin: auto;
+            width: 400px;
+            height: 200px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #banner {
+            position: relative;
+        }
+
+        #banner li {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 400px;
+            height: 200px;
+            opacity: 0;
+        }
+
+        #banner li:first-of-type {
+            opacity: 1;
+        }
+
+        #banner img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #btn-num {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+        }
+
+        #btn-num li {
+            float: left;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            background: rgb(255, 138, 29);
+            border-radius: 50%;
+            color: #fff;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #btn-num li:first-of-type {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>来回播放——幻灯片效果</h3>
+    <section>
+        <ul id="banner">
+            <li>
+                <img src="../images/29-01.jpg" alt="">
+            </li>
+            <li>
+                <img src="../images/29-02.jpg" alt="">
+            </li>
+            <li>
+                <img src="../images/29-03.jpg" alt="">
+            </li>
+            <li>
+                <img src="../images/29-04.jpg" alt="">
+            </li>
+            <li>
+                <img src="../images/29-05.jpg" alt="">
+            </li>
+            <li>
+                <img src="../images/29-06.jpg" alt="">
+            </li>
+        </ul>
+
+        <ul id="btn-num">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </section>
+
+    <script>
+        var banner = document.getElementById('banner');
+        var btnNum = document.getElementById('btn-num');
+        var bannerList = banner.getElementsByTagName('li');
+        var btnList = btnNum.getElementsByTagName('li');
+        var index = 0;
+        var timer = play = null;
+        var forward = true;
+
+        for (var i = 0; i < btnList.length; i++) {
+            btnList[i].index = i;
+            btnList[i].onmouseover = function () {
+                show(this.index);
+            }
+        }
+
+        function show(targetIndex) {
+            index = targetIndex;
+
+            for (var i = 0; i < btnList.length; i++) {
+                btnList[i].style.background = 'rgb(255, 138, 29)';
+            }
+            btnList[index].style.background = 'red';
+            clearInterval(timer);
+
+            var alpha = 0;
+            for (var i = 0; i < bannerList.length; i++) {
+                bannerList[i].style.opacity = 0;
+            }
+
+            timer = setInterval(function () {
+                alpha += 2;
+                alpha > 100 && (alpha = 100);
+                bannerList[index].style.opacity = alpha / 100;
+                alpha == 100 && clearInterval(timer);
+            }, 20)
+        }
+
+        autoPlay();
+
+        function autoPlay() {
+            play = setInterval(function(){
+                forward ? index++ : index--;
+
+                index >= btnList.length && (forward = false, index = bannerList.length -2 );
+                index <= 0 && (forward = true, index = 0 );
+
+                show(index);
+            },1500)
+        }
+
+
+    </script>
+</body>
+
+</html>

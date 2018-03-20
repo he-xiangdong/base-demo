@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>星级评分系统</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        li {
+            float: left;
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            background: url('../images/36-02.png') no-repeat;
+            background-size: 100% 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>星级评分系统</h3>
+    <section>
+        <p>点击星星就能打分</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+
+    <script>
+
+        var lis = document.getElementsByTagName('li');
+        var index = 0;
+        var targetIndex = 0;
+
+        for (var i = 1; i <= lis.length; i++) {
+            lis[i - 1].index = i;
+
+            lis[i - 1].onmouseover = function () {
+                setBg(this.index);
+            }
+
+            lis[i - 1].onmouseout = function () {
+                setBg();
+            }
+
+            lis[i - 1].onclick = function () {
+                index = this.index;
+                setBg(targetIndex)
+            }
+
+        }
+
+        function setBg(num) {
+            targetIndex = num ? num : index;
+            for (var i = 0; i < lis.length; i++) {
+                if (i < targetIndex) {
+                    lis[i].style.background = "url('../images/36-0" + 1 + ".png') no-repeat";
+                } else {
+                    lis[i].style.background = "url('../images/36-0" + 2 + ".png') no-repeat";
+                }
+
+                lis[i].style.backgroundSize = "100% 100%";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

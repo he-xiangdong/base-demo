@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css函数一设置/读取对象的属性</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #target-box {
+            margin: auto;
+            width: 400px;
+            height: 200px;
+            background: rgb(53, 235, 241);
+            border: 2px solid blue;
+        }
+
+        button {
+            margin-top: 30px;
+            background: rgb(238, 252, 39);
+            color: rgb(226, 48, 250);
+            font-size: 20px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h3>css函数一设置/读取对象的属性</h3>
+    <section>
+
+        <div id="target-box">
+            <button>获取样式</button>
+            <button>设置样式</button>
+            <button>默认样式</button>
+        </div>
+
+    </section>
+
+    <script>
+        var targerBox = document.getElementById('target-box');
+        var btns = targerBox.getElementsByTagName('button');
+
+        btns[0].onclick = function () {
+            console.log('width ' + css(targerBox, 'width'));
+            console.log('height ' + css(targerBox, 'height'));
+            console.log('bg-color ' + css(targerBox, 'background-color'));
+            console.log('border ' + css(targerBox, 'border'));
+        }
+
+        btns[1].onclick = function () {
+            css(targerBox, {
+                'background-color': 'rgb(236, 80, 80)',
+                'border-color': 'blueviolet'
+            })
+            for (var i = 0; i < btns.length; i++) {
+                css(btns[i], {
+                    'background-color': 'rgb(63, 111, 243)',
+                    'border-color': 'rgb(226, 162, 43)'
+                })
+            }
+        }
+
+        btns[2].onclick = function () {
+            css(targerBox, {
+                'background-color': 'rgb(53, 235, 241)',
+                'border-color': 'blue'
+            })
+            for (var i = 0; i < btns.length; i++) {
+                css(btns[i], {
+                    'background-color': 'rgb(238, 252, 39)',
+                    'border-color': 'rgb(226, 48, 250)'
+                })
+            }
+        }
+
+        function css(target, attr, value) {
+            switch (arguments.length) {
+                case 2:
+                    if (typeof arguments[1] == 'object') {
+                        for (var key in attr) {
+                            target.style[key] = attr[key];
+                        }
+                    } else {
+                        return target.currentStyle ? target.currentStyle[attr] : getComputedStyle(target, null)[attr];
+                    }
+                    break;
+                case 3:
+                    target.style[attr] = value;
+                    break;
+
+                default:
+                    console.log('参数错误!');
+            }
+        }
+    </script>
+</body>
+
+</html>
