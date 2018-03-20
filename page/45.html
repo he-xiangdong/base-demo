@@ -48,10 +48,15 @@
     </section>
 
     <script>
+        var moveBox = document.getElementsByTagName('section')[0];
         var title = document.getElementById('title');
         var back = document.getElementById('back');
 
-        title.
+        title.onmousedown = function () {
+            moveBox.addEventListener('dragstart', function (event) {
+                console.log('拖动开启了!')
+            })
+        }
 
     </script>
 </body>
