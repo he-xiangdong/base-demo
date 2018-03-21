@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>仿腾讯微博效果</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        section {
+            display: inline-block;
+            width: 450px;
+            text-align: left;
+            border: 10px solid rgb(146, 158, 152);
+            border-radius: 10px;
+            background: rgb(185, 230, 241);
+            padding: 30px;
+        }
+
+        .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .icon-box {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .icon-box img {
+            width: 30px;
+            height: 30px;
+            border: 1px solid transparent;
+            opacity: .7;
+        }
+
+        .icon-box img:hover {
+            border-color: red;
+            opacity: 1;
+        }
+
+        .icon-box .active {
+            border-color: red;
+            opacity: 1;
+        }
+
+        input {
+            padding: 5px;
+            width: 200px;
+            height: 20px;
+            border: 1px solid rgb(166, 211, 248);
+            border-radius: 5px;
+        }
+
+        textarea {
+            margin-top: 10px;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            resize: none;
+            border-radius: 5px;
+            border: 1px solid rgb(166, 211, 248);
+            box-sizing: border-box;
+        }
+
+        .btn-box {
+            margin: 10px 0;
+            text-align: right;
+            color: rgb(153, 153, 153);
+            vertical-align: middle;
+        }
+
+        .tips-msg {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        #fontNum {
+            font-size: 25px;
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            background: rgb(116, 245, 104);
+            border: 2px solid rgb(66, 233, 169);
+            border-radius: 5px;
+            font-size: 20px;
+            color: #fff;
+            outline: none;
+        }
+
+        .show-box ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .show-box li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgb(206, 204, 204);
+            overflow: hidden;
+        }
+
+        .user-img {
+            float: left;
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .user-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            float: left;
+            margin-left: 10px;
+            width: 350px;
+            height: 80px;
+        }
+
+        p {
+            overflow: hidden;
+        }
+
+        .delete {
+            color: red;
+            cursor: pointer;
+            float: right;
+            display: none;
+        }
+
+        .show-box li:hover {
+            background: rgba(252, 213, 213, 0.363);
+        }
+
+        .show-box li:hover .delete {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>仿腾讯微博效果</h3>
+    <section>
+        <div class="title">说点什么吧...</div>
+
+        <div class="user-box">
+            <input id="input-name" type="text" placeholder="请输入用户名称">
+
+            <div class="icon-box">
+                <img src="../images/12-01.jpg" alt="">
+                <img src="../images/12-02.jpg" alt="">
+                <img src="../images/12-03.jpg" alt="">
+                <img src="../images/12-04.jpg" alt="">
+                <img src="../images/12-05.jpg" alt="">
+                <img src="../images/12-06.jpg" alt="">
+            </div>
+        </div>
+
+        <textarea id="input-content" placeholder="输入发布内容" maxlength="140"></textarea>
+
+        <div class="btn-box">
+            <div class="tips-msg">
+                还可输入
+                <span id="fontNum">140</span> 字
+            </div>
+
+            <button id="submit">发布</button>
+        </div>
+        <hr>
+        <div class="show-box">
+            <div class="title">大家在说</div>
+
+            <ul id="massage-list">
+
+            </ul>
+        </div>
+
+    </section>
+
+    <script>
+        var inputName = document.getElementById('input-name');
+        var inputContent = document.getElementById('input-content');
+
+        var userImgs = document.getElementsByClassName('icon-box')[0].getElementsByTagName('img');
+        var msgList = document.getElementById('massage-list');
+        var lists = msgList.getElementsByTagName('li');
+
+        var submit = document.getElementById('submit');
+        var fontNum = document.getElementById('fontNum');
+
+
+        // 选择 头像
+        var iconIndex = 0;
+        userImgs[0].className = 'active';
+        for (var i = 0; i < userImgs.length; i++) {
+            userImgs[i].index = i;
+            userImgs[i].onclick = function () {
+                for (var i = 0; i < userImgs.length; i++) {
+                    userImgs[i].className = '';
+                }
+
+                userImgs[this.index].className = 'active';
+                iconIndex = this.index;
+            }
+        }
+
+        // 发布信息
+        submit.onclick = function () {
+            if (!inputName.value.trim()) {
+                alert('用户名不能为空!');
+                return;
+            }
+
+            if (!inputContent.value.trim()) {
+                alert('内容不能为空!');
+                return;
+            }
+
+            showMsg(msgList);
+
+            reset();
+        }
+
+        // 剩余 字数
+        inputContent.onkeyup = function () {
+            var num = 140 - inputContent.value.length;
+
+            fontNum.innerHTML = num;
+        }
+
+        // 渲染信息
+        function showMsg(obj) {
+            var time = new Date().toLocaleString();
+            var li = document.createElement('li');
+            var str = `<div class="user-img">
+                            <img src="../images/12-0${iconIndex + 1}.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <p>
+                                <span class="username">${inputName.value.trim()}</span> :
+                                <span class="info">${inputContent.value.trim()}</span>
+                            </p>
+
+                            <p>
+                                <span class="time">${time}</span>
+                                <span class="delete">删除</span>
+                            </p>
+                        </div>`;
+            li.innerHTML = str;
+
+            lists.length > 0 ? obj.insertBefore(li, lists[0]) : obj.appendChild(li);
+
+            mydelete();
+        }
+
+        // 重置
+        function reset() {
+            inputName.value = '';
+            inputContent.value = '';
+            fontNum.innerHTML = 140;
+
+            for (var i = 0; i < userImgs.length; i++) {
+                userImgs[i].className = '';
+            }
+            userImgs[0].className = 'active';
+            iconIndex = 0;
+        }
+
+        // 删除
+        function mydelete() {
+            var deleteBtns = document.getElementsByClassName('delete');
+            
+            for (var i = 0; i < deleteBtns.length; i++) {
+                deleteBtns[i].index = i;
+                deleteBtns[i].onclick = function () {
+                    var removeDom = this.parentNode.parentNode.parentNode;
+                    msgList.removeChild(removeDom);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

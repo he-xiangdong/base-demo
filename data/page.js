@@ -195,6 +195,14 @@ var pageData = {
             "pageId": 45,
             "url": "./page/45.html",
             "name": "完美拖拽"
+        },{
+            "pageId": 46,
+            "url": "./page/46.html",
+            "name": "仿腾讯微博效果"
+        },{
+            "pageId": 47,
+            "url": "./page/47.html",
+            "name": "自定义多久右键菜单"
         },
     ]
 

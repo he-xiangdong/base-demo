@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            /* transform: translate(-50%, -50%); */
+            margin: -150px 0 0 -200px;
             display: inline-block;
             width: 400px;
             height: 300px;
@@ -33,15 +35,17 @@
             line-height: 40px;
             cursor: move;
         }
+
         #back {
             cursor: pointer;
         }
     </style>
 </head>
+
 <body>
     <h3>完美拖拽</h3>
 
-    <section draggable="true">
+    <section>
         <div id="title">
             <span id="back">点击回放拖拽轨迹</span>
         </div>
@@ -52,12 +56,97 @@
         var title = document.getElementById('title');
         var back = document.getElementById('back');
 
-        title.onmousedown = function () {
-            moveBox.addEventListener('dragstart', function (event) {
-                console.log('拖动开启了!')
-            })
+        // 位移坐标数组
+        var arrPos = [{ x: moveBox.offsetLeft, y: moveBox.offsetTop }]
+
+        var disX = disY = 0;
+        var active = false;
+
+        title.onmousedown = function (event) {
+            var event = event || window.event;
+
+            // 点击状态
+            active = true;
+
+            // 鼠标点击在元素的位置
+            disX = event.clientX - moveBox.offsetLeft;
+            disY = event.clientY - moveBox.offsetTop;
+
+            console.log(event.clientX)
+            console.log(moveBox.offsetLeft)
+            console.log(disX)
+            // 追加当前坐标
+            arrPos.push({ x: moveBox.offsetLeft, y: moveBox.offsetTop });
+
+            this.setCapture && this.setCapture();
+
+
+
+            return false;
+        }
+
+        document.onmousemove = function (event) {
+            var event = event || window.event;
+            // 判断点击状态
+            if (!active) { return }
+
+            // 元素位置
+            var iL = event.clientX - disX;
+            var iT = event.clientY - disY;
+
+            // 最大范围
+            var maxL = document.documentElement.clientWidth - moveBox.offsetWidth;
+            var maxT = document.documentElement.clientHeight - moveBox.offsetHeight;
+
+            // 最小值
+            iL = iL < 0 ? 0 : iL;
+            iT = iT < 0 ? 0 : iT;
+
+            // 最大值
+            iL = iL > maxL ? maxL : iL;
+            iT = iT > maxT ? maxT : iT;
+
+            arrPos.push({ x: iL, y: iT });
+
+            moveBox.style.margin = 0;
+            moveBox.style.top = iT + 'px';
+            moveBox.style.left = iL + 'px';
+
+
+        }
+
+        document.onmouseup = function (event) {
+            var event = event || window.event;
+
+            moveBox.releaseCapture && moveBox.releaseCapture();
+            active = false;
+        }
+
+        back.onclick = function (event) {
+            var event = event || window.event;
+            var timer = setInterval(function () {
+
+                if (arrPos.length == 1) { return }
+
+                var oPos = arrPos.pop();
+                oPos ?
+                    (moveBox.style.top = oPos.y + 'px', moveBox.style.left = oPos.x + 'px') :
+                    clearInterval(timer);
+
+            }, 20)
+
+            this.focus = false;
+
+            return false;
+        }
+
+        back.onmousedown = function (event) {
+            var event = event || window.event;
+
+            event.cancelBubble = true;
         }
 
     </script>
 </body>
+
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义多久右键菜单</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            list-style: none;
+            padding: 10px 20px;
+        }
+
+        li:hover {
+            background: rgb(119, 112, 112);
+            cursor: pointer;
+        }
+
+        #menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgb(221, 221, 199);
+            color: #fff;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>自定义多久右键菜单</h3>
+
+    <ul id="menu">
+        <li>菜单一</li>
+        <li>菜单二</li>
+        <li>菜单三</li>
+        <li>菜单四</li>
+        <li>菜单五</li>
+    </ul>
+
+    <script>
+        var menu = document.getElementById('menu');
+        document.oncontextmenu = function (event) {
+
+            var event = event || window.event;
+
+            menu.style.top = event.clientY + 5 + 'px';
+            menu.style.left = event.clientX + 5 + 'px';
+
+            menu.style.display = 'block';
+            return false;
+        }
+
+        function showChildMenu(obj) { 
+            
+        }
+    </script>
+</body>
+
+</html>
