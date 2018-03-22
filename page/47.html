@@ -18,12 +18,13 @@
         }
 
         li {
+            position: relative;
             list-style: none;
-            padding: 10px 20px;
+            padding: 10px 30px 10px 20px;
         }
 
         li:hover {
-            background: rgb(119, 112, 112);
+            background: rgb(221, 221, 199);
             cursor: pointer;
         }
 
@@ -31,9 +32,18 @@
             position: absolute;
             top: 0;
             left: 0;
-            background: rgb(221, 221, 199);
+            background: rgb(119, 112, 112);
             color: #fff;
             display: none;
+            border: 2px solid rgb(233, 127, 57);
+        }
+
+        #menu ul {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: -100%;
+            background: rgb(119, 112, 112);
         }
     </style>
 </head>
@@ -42,7 +52,31 @@
     <h3>自定义多久右键菜单</h3>
 
     <ul id="menu">
-        <li>菜单一</li>
+        <li>菜单一
+            <ul>
+                <li>二级</li>
+                <li>二级
+                    <ul>
+                        <li>三级</li>
+                        <li>三级</li>
+                        <li>三级
+                            <ul>
+                                <li>4级</li>
+                                <li>4级</li>
+                                <li>4级</li>
+                                <li>4级</li>
+                                <li>4级</li>
+                            </ul>
+                        </li>
+                        <li>三级</li>
+                        <li>三级</li>
+                    </ul>
+                </li>
+                <li>二级</li>
+                <li>二级</li>
+                <li>二级</li>
+            </ul>
+        </li>
         <li>菜单二</li>
         <li>菜单三</li>
         <li>菜单四</li>
@@ -51,6 +85,10 @@
 
     <script>
         var menu = document.getElementById('menu');
+        var firstNav = menu.children;
+
+        var timer;
+
         document.oncontextmenu = function (event) {
 
             var event = event || window.event;
@@ -58,13 +96,46 @@
             menu.style.top = event.clientY + 5 + 'px';
             menu.style.left = event.clientX + 5 + 'px';
 
-            menu.style.display = 'block';
+            showChildMenu(menu)
             return false;
         }
 
-        function showChildMenu(obj) { 
-            
+        document.onclick = function () {
+            menu.style.display = 'none';
         }
+
+        menu.onclick = function () {
+            event.stopPropagation();
+        }
+
+        function showChildMenu(obj) {
+            event.stopPropagation();
+            obj.style.display = 'block';
+            var navList = obj.children;
+            for (var i = 0; i < navList.length; i++) {
+                navList[i].onmouseenter = function () {
+
+                    if (this.children[0]) {
+                        clearTimeout(timer);
+                        showChildMenu(this.children[0]);
+                    }
+                }
+
+                navList[i].onmouseleave = function () {
+                    var dom = this.children[0];
+
+                    if (this.children[0]) {
+                        timer = setTimeout(function () {
+                            dom.style.display = 'none';
+                        }, 300);
+                    }
+
+                }
+            }
+
+
+        }
+
     </script>
 </body>
 

@@ -203,6 +203,13 @@ var pageData = {
             "pageId": 47,
             "url": "./page/47.html",
             "name": "自定义多久右键菜单"
+        }
+    ],
+    "nav7":[
+        {
+            "pageId": 48,
+            "url": "./page/48.html",
+            "name": "自动轮播广告（缓冲效果）"
         },
     ]
 
